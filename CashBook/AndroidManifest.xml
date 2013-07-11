@@ -22,6 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name="fam.tak0294.cashbook.InputFragment"></activity>
+        <activity android:name="fam.tak0294.cashbook.SettingActivity"></activity>
+        <activity android:name="fam.tak0294.cashbook.GraphFragment"></activity>
     </application>
 
 </manifest>

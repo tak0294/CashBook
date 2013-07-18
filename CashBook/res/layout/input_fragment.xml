@@ -4,20 +4,148 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Input Fragment"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <EditText
-        android:id="@+id/editText1"
+    <LinearLayout
+        android:id="@+id/money_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+		
+		<ToggleButton
+		    android:id="@+id/input_button_sisyutu"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="支出"
+		    android:textOff="支出"
+		    android:textOn="支出" />
+	
+	    <ToggleButton
+	        android:id="@+id/input_button_syunyu"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="収入"
+	        android:textOff="収入"
+	        android:textOn="収入" />
+	        
+    </LinearLayout>
 
-        <requestFocus />
-    </EditText>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp" >
 
+        <ImageView
+            android:id="@+id/img_10000yen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:src="@drawable/gra_10000yen" />
+
+        <ImageView
+            android:id="@+id/img_5000yen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gra_5000yen" />
+
+        <ImageView
+            android:id="@+id/img_1000yen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:src="@drawable/gra_1000yen" />
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:stretchColumns="0,1,2,3" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/img_500yen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:src="@drawable/gra_500yen" />
+
+            <ImageView
+                android:id="@+id/img_100yen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:src="@drawable/gra_100yen" />
+
+            <ImageView
+                android:id="@+id/img_10yen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:src="@drawable/gra_10yen" />
+
+            <ImageView
+                android:id="@+id/img_1yen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:src="@drawable/gra_1yen" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp" >
+
+            <FrameLayout
+                android:id="@+id/layout_cacheTray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical" >
+
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/img_50yen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/gra_50yen" />
+
+            <ImageView
+                android:id="@+id/img_5yen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/gra_5yen" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_span="4"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </TableRow>
+
+    </TableLayout>
+    
 </LinearLayout>

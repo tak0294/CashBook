@@ -18,6 +18,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class InputFragment extends Fragment implements OnClickListener,OnTouchListener,OnCheckedChangeListener
@@ -33,7 +34,7 @@ public class InputFragment extends Fragment implements OnClickListener,OnTouchLi
 	ImageView m_img5yen;
 	ImageView m_img1yen;
 	FrameLayout m_layoutTray;
-	
+	TextView m_sumText;
 	ToggleButton m_payButton;
 	ToggleButton m_incomeButton;
 	
@@ -62,15 +63,15 @@ public class InputFragment extends Fragment implements OnClickListener,OnTouchLi
         m_img5yen     = (ImageView)view.findViewById(R.id.img_5yen);
         m_img1yen     = (ImageView)view.findViewById(R.id.img_1yen);
         
-        m_img10000yen.setOnClickListener(this);
-        m_img5000yen.setOnClickListener(this);
-        m_img1000yen.setOnClickListener(this);
-        m_img500yen.setOnClickListener(this);
-        m_img100yen.setOnClickListener(this);
-        m_img50yen.setOnClickListener(this);
-        m_img10yen.setOnClickListener(this);
-        m_img5yen.setOnClickListener(this);
-        m_img1yen.setOnClickListener(this);
+        m_img10000yen.setOnTouchListener(this);
+        m_img5000yen.setOnTouchListener(this);
+        m_img1000yen.setOnTouchListener(this);
+        m_img500yen.setOnTouchListener(this);
+        m_img100yen.setOnTouchListener(this);
+        m_img50yen.setOnTouchListener(this);
+        m_img10yen.setOnTouchListener(this);
+        m_img5yen.setOnTouchListener(this);
+        m_img1yen.setOnTouchListener(this);
         
         //トグルボタンへのイベント割付.
         m_payButton    = (ToggleButton)view.findViewById(R.id.input_button_sisyutu);
@@ -84,6 +85,9 @@ public class InputFragment extends Fragment implements OnClickListener,OnTouchLi
         m_layoutTray = (FrameLayout)view.findViewById(R.id.layout_cacheTray);
         m_cacheTray = new CacheTray(view.getContext());
         m_layoutTray.addView(m_cacheTray, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        
+        //合計金額.
+        m_sumText = (TextView)view.findViewById(R.id.txt_sum);
         
         Log.i(TAG,"InputFragment onActivityCreated");
     }
@@ -101,49 +105,7 @@ public class InputFragment extends Fragment implements OnClickListener,OnTouchLi
 
 	@Override
 	public void onClick(View view) {
-		// TODO 自動生成されたメソッド・スタブ
-		switch(view.getId())
-		{
-		case R.id.img_10000yen:
-			m_cacheTray.addCache(new Cache(10000, R.drawable.gra_10000yen));
-			break;
-
-		case R.id.img_5000yen:
-			m_cacheTray.addCache(new Cache(5000, R.drawable.gra_5000yen));
-			break;
-
-		case R.id.img_1000yen:
-			m_cacheTray.addCache(new Cache(1000, R.drawable.gra_1000yen));
-			break;
-
-		case R.id.img_500yen:
-			m_cacheTray.addCache(new Cache(500, R.drawable.gra_500yen));
-			break;
-
-		case R.id.img_100yen:
-			m_cacheTray.addCache(new Cache(100, R.drawable.gra_100yen));
-			break;
-
-		case R.id.img_50yen:
-			m_cacheTray.addCache(new Cache(50, R.drawable.gra_50yen));
-			break;
-
-		case R.id.img_10yen:
-			m_cacheTray.addCache(new Cache(10, R.drawable.gra_10yen));
-			break;
-
-		case R.id.img_5yen:
-			m_cacheTray.addCache(new Cache(5, R.drawable.gra_5yen));
-			break;
-
-		case R.id.img_1yen:
-			m_cacheTray.addCache(new Cache(1, R.drawable.gra_1yen));
-			break;
-
-		}
 		
-		m_cacheTray.invalidate();
-		Log.i(TAG, "合計金額：" + m_cacheTray.getSum());
 	}
 
 	@Override
@@ -164,8 +126,54 @@ public class InputFragment extends Fragment implements OnClickListener,OnTouchLi
 	}
 
 	@Override
-	public boolean onTouch(View arg0, MotionEvent arg1) {
+	public boolean onTouch(View view, MotionEvent event) {
+		Log.i(TAG, "onTouch !!");
 		// TODO 自動生成されたメソッド・スタブ
+		if(event.getAction() == MotionEvent.ACTION_DOWN)
+		{
+			switch(view.getId())
+			{
+			case R.id.img_10000yen:
+				m_cacheTray.addCache(new Cache(10000, R.drawable.gra_10000yen));
+				break;
+	
+			case R.id.img_5000yen:
+				m_cacheTray.addCache(new Cache(5000, R.drawable.gra_5000yen));
+				break;
+	
+			case R.id.img_1000yen:
+				m_cacheTray.addCache(new Cache(1000, R.drawable.gra_1000yen));
+				break;
+	
+			case R.id.img_500yen:
+				m_cacheTray.addCache(new Cache(500, R.drawable.gra_500yen));
+				break;
+	
+			case R.id.img_100yen:
+				m_cacheTray.addCache(new Cache(100, R.drawable.gra_100yen));
+				break;
+	
+			case R.id.img_50yen:
+				m_cacheTray.addCache(new Cache(50, R.drawable.gra_50yen));
+				break;
+	
+			case R.id.img_10yen:
+				m_cacheTray.addCache(new Cache(10, R.drawable.gra_10yen));
+				break;
+	
+			case R.id.img_5yen:
+				m_cacheTray.addCache(new Cache(5, R.drawable.gra_5yen));
+				break;
+	
+			case R.id.img_1yen:
+				m_cacheTray.addCache(new Cache(1, R.drawable.gra_1yen));
+				break;
+			}
+			
+			m_cacheTray.invalidate();
+			m_sumText.setText(m_cacheTray.getSum() + "円");
+			Log.i(TAG, "合計金額：" + m_cacheTray.getSum());
+		}
 		return false;
 	}  
 }

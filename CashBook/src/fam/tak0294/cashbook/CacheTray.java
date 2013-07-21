@@ -16,8 +16,7 @@ public class CacheTray extends View {
 	
 	ArrayList<Cache> m_caches;
 	Bitmap m_trayBitmap;
-	
-	
+		
 	public CacheTray(Context context)
 	{
 		super(context);
@@ -51,7 +50,7 @@ public class CacheTray extends View {
 	@Override
 	public void onDraw(Canvas canvas)
 	{
-		canvas.drawBitmap(m_trayBitmap, 0, 0, null);
+		//canvas.drawBitmap(m_trayBitmap, 0, 0, null);
 		drawCaches(canvas);
 	}
 	
@@ -65,6 +64,8 @@ public class CacheTray extends View {
 		
 		int coinCount  = 0;
 		int paperCount = 0;
+		int coinColCount = 0;
+		int paperColCount = 0;
 		
 		for(int ii=0;ii<m_caches.size();ii++)
 		{
@@ -73,39 +74,59 @@ public class CacheTray extends View {
 			int x = 0;
 			int y = 0;
 			
-			Bitmap tmpBitmap = BitmapFactory.decodeResource(getResources(), tmpCache.getResId());
-			if(tmpBitmap != null)
+			
+			BitmapFactory.Options option = new BitmapFactory.Options();
+			
+			//if(tmpBitmap != null)
 			{
 				if(tmpCache.getType() == Cache.TYPE.PAPER)
 				{
-					m.preScale(0.75f, 0.75f);
-					x = 10;
-					y = paperCount * 10;
+					//m.postScale(0.2f, 0.2f);
+					option.inSampleSize = 2;
+					x = 10 + paperColCount * 3;
+					y = paperCount * 10 + 10;
+					
 					paperCount++;
+					if(paperCount == 7)
+					{
+						paperCount = 0;
+						paperColCount++;
+					}
 				}
 				else
 				{
-					m.preScale(0.5f, 0.5f);
+					//m.postScale(0.5f, 0.5f);
+					option.inSampleSize = 4;
 					if(tmpCache.getAmount() == 500)
-						x = 160;
+						x = 90;
 					else if(tmpCache.getAmount() == 100)
-						x = 180;
+						x = 100;
 					else if(tmpCache.getAmount() == 50)
-						x = 200;
+						x = 110;
 					else if(tmpCache.getAmount() == 10)
-						x = 220;
+						x = 120;
 					else if(tmpCache.getAmount() == 5)
-						x = 240;
+						x = 130;
 					else
-						x = 260;
-					y = coinCount * 10;
+						x = 140;
+					
+					x += coinColCount*3;
+					y = coinCount * 10 + 10;
 					coinCount++;
+					if(coinCount == 7)
+					{
+						coinCount = 0;
+						coinColCount++;
+					}
+					
 				}
+				
+				Bitmap tmpBitmap = BitmapUtil.getBitmapById(getResources(), tmpCache.getResId(), option);
 
-				m.preTranslate(x, y);
+				m.postTranslate(x, y);
 				canvas.drawBitmap(tmpBitmap, m, null);
-				tmpBitmap.recycle();
-				tmpBitmap = null;
+				//tmpBitmap.recycle();
+				//tmpBitmap = null;
 			}
 		}
 	}

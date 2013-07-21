@@ -30,7 +30,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:paddingTop="10dp" >
@@ -40,25 +40,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
+            android:layout_weight="1"
             android:src="@drawable/gra_10000yen" />
 
         <ImageView
             android:id="@+id/img_5000yen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:src="@drawable/gra_5000yen" />
 
         <ImageView
             android:id="@+id/img_1000yen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:paddingLeft="10dp"
             android:src="@drawable/gra_1000yen" />
 
     </LinearLayout>
 
     <TableLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:stretchColumns="0,1,2,3" >
@@ -72,28 +75,32 @@
                 android:id="@+id/img_500yen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
                 android:src="@drawable/gra_500yen" />
 
             <ImageView
                 android:id="@+id/img_100yen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
                 android:src="@drawable/gra_100yen" />
 
             <ImageView
                 android:id="@+id/img_10yen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
                 android:src="@drawable/gra_10yen" />
 
             <ImageView
                 android:id="@+id/img_1yen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
                 android:src="@drawable/gra_1yen" />
 
         </TableRow>
@@ -108,9 +115,15 @@
                 android:id="@+id/layout_cacheTray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_span="2"
                 android:layout_gravity="center_vertical"
+                android:layout_span="2"
                 android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/gra_dai" />
 
             </FrameLayout>
 
@@ -119,6 +132,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
                 android:src="@drawable/gra_50yen" />
 
             <ImageView
@@ -126,6 +141,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
                 android:src="@drawable/gra_5yen" />
 
         </TableRow>

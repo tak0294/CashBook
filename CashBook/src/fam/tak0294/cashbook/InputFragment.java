@@ -2,6 +2,8 @@ package fam.tak0294.cashbook;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
@@ -21,6 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class InputFragment extends Fragment implements OnClickListener,OnTouchListener,OnCheckedChangeListener
@@ -161,6 +164,31 @@ public class InputFragment extends Fragment implements OnClickListener,OnTouchLi
 		switch(view.getId())
 		{
 		case R.id.ok_button:
+			
+			final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			builder.setTitle("ämîF");
+			builder.setMessage(m_cacheTray.getSum() + "â~Ç≈ìoò^ÇµÇ‹Ç∑ÅBÇÊÇÎÇµÇ¢Ç≈Ç∑Ç©ÅH");
+			builder.setPositiveButton("ÇÕÇ¢", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					Toast.makeText(getActivity(), "ìoò^ÇµÇ‹ÇµÇΩ", Toast.LENGTH_SHORT).show();
+					m_cacheTray.clearData();
+					m_cacheTray.invalidate();
+					updateSumText();
+				}
+			});
+			builder.setNegativeButton("Ç¢Ç¢Ç¶", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+			builder.create().show();
+			
 			break;
 			
 		case R.id.clear_button:

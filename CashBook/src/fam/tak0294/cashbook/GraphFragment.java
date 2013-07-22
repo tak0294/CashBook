@@ -15,6 +15,6 @@ public class GraphFragment extends Fragment {
 	{  
         // 第３引数のbooleanは"container"にreturnするViewを追加するかどうか  
         //trueにすると最終的なlayoutに再度、同じView groupが表示されてしまうのでfalseでOKらしい  
-        return inflater.inflate(R.layout.graph_fragment, container, false);  
+		return inflater.inflate(R.layout.graph_fragment, container, false);  
     }  
 }

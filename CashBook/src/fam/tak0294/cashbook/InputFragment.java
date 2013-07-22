@@ -2,6 +2,7 @@ package fam.tak0294.cashbook;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.FrameLayout;
@@ -38,18 +40,60 @@ public class InputFragment extends Fragment implements OnClickListener,OnTouchLi
 	ToggleButton m_payButton;
 	ToggleButton m_incomeButton;
 	
+	Button m_clearButton;
+	Button m_okButton;
+	Button m_undoButton;
+	
 	CacheTray m_cacheTray;
+	
+	SharedPreferences m_pref;
+	
+	
+	public InputFragment() {
+		this.setRetainInstance(true);
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		Log.i(TAG, "onResume");
+		m_cacheTray.restoreData(m_pref);
+		m_cacheTray.invalidate();
+		updateSumText();
+	}
+	
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		Log.i(TAG, "onPause");
+		m_cacheTray.saveData(m_pref);
+	}
+
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(TAG,"InputFragment onCreate");
+	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle outState)
+	{
+		super.onSaveInstanceState(outState);
+		Log.i(TAG,"InputFragment onSaveInstanceState");
 		
 	}
+
 	
 	@Override
 	public void onActivityCreated(Bundle bundle){
         super.onActivityCreated(bundle);
+        
+        //設定情報.
+        m_pref = getActivity().getSharedPreferences(TAG, Activity.MODE_PRIVATE);
+        
+        
         View view = getView();
 
         //お金画像へのイベント割付.
@@ -89,6 +133,15 @@ public class InputFragment extends Fragment implements OnClickListener,OnTouchLi
         //合計金額.
         m_sumText = (TextView)view.findViewById(R.id.txt_sum);
         
+        //ボタン.
+        m_clearButton = (Button)view.findViewById(R.id.clear_button);
+        m_okButton    = (Button)view.findViewById(R.id.ok_button);
+        m_undoButton  = (Button)view.findViewById(R.id.undo_button);
+        
+        m_clearButton.setOnClickListener(this);
+        m_okButton.setOnClickListener(this);
+        m_undoButton.setOnClickListener(this);
+        
         Log.i(TAG,"InputFragment onActivityCreated");
     }
 	
@@ -105,7 +158,23 @@ public class InputFragment extends Fragment implements OnClickListener,OnTouchLi
 
 	@Override
 	public void onClick(View view) {
-		
+		switch(view.getId())
+		{
+		case R.id.ok_button:
+			break;
+			
+		case R.id.clear_button:
+			m_cacheTray.clearData();
+			m_cacheTray.invalidate();
+			updateSumText();
+			break;
+			
+		case R.id.undo_button:
+			m_cacheTray.undo();
+			m_cacheTray.invalidate();
+			updateSumText();
+			break;
+		}
 	}
 
 	@Override
@@ -171,9 +240,13 @@ public class InputFragment extends Fragment implements OnClickListener,OnTouchLi
 			}
 			
 			m_cacheTray.invalidate();
-			m_sumText.setText(m_cacheTray.getSum() + "円");
+			updateSumText();
 			Log.i(TAG, "合計金額：" + m_cacheTray.getSum());
 		}
 		return false;
-	}  
+	} 
+	
+	private void updateSumText() {
+		m_sumText.setText(m_cacheTray.getSum() + "円");
+	}
 }

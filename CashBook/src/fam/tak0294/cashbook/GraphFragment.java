@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 public class GraphFragment extends Fragment {
 
@@ -15,6 +16,13 @@ public class GraphFragment extends Fragment {
 	{  
         // 第３引数のbooleanは"container"にreturnするViewを追加するかどうか  
         //trueにすると最終的なlayoutに再度、同じView groupが表示されてしまうのでfalseでOKらしい  
-		return inflater.inflate(R.layout.graph_fragment, container, false);  
+		View view = inflater.inflate(R.layout.graph_fragment, container, false);
+		
+		CalendarView calendarView = new CalendarView(getActivity());
+		calendarView.set(2013, 7-1);
+		LinearLayout layout = (LinearLayout)view.findViewById(R.id.calendarViewLayout);
+		layout.addView(calendarView);
+		
+		return view;
     }  
 }

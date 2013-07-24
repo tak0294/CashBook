@@ -71,7 +71,7 @@ public class MainActivity extends SherlockFragmentActivity {
 		}
 		
 		transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-		transaction.addToBackStack(null);
+		//transaction.addToBackStack(null);
 		transaction.commit();
 	}
 	

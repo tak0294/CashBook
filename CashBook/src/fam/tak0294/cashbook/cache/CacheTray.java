@@ -1,7 +1,11 @@
-package fam.tak0294.cashbook;
+package fam.tak0294.cashbook.cache;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import fam.tak0294.cashbook.R;
+import fam.tak0294.cashbook.R.drawable;
+import fam.tak0294.cashbook.util.BitmapUtil;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -23,9 +23,8 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="fam.tak0294.cashbook.InputFragment"></activity>
-        <activity android:name="fam.tak0294.cashbook.SettingActivity"></activity>
-        <activity android:name="fam.tak0294.cashbook.GraphFragment"></activity>
+        <activity android:name="fam.tak0294.cashbook.fragment.InputFragment"></activity>
+        <activity android:name="fam.tak0294.cashbook.fragment.GraphFragment"></activity>
     </application>
 
 </manifest>

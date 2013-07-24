@@ -3,6 +3,10 @@ package fam.tak0294.cashbook;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 
+import fam.tak0294.cashbook.fragment.GraphFragment;
+import fam.tak0294.cashbook.fragment.InputFragment;
+import fam.tak0294.cashbook.fragment.TabFragment;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;

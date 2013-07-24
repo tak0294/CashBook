@@ -1,5 +1,9 @@
-package fam.tak0294.cashbook;
+package fam.tak0294.cashbook.fragment;
 
+import fam.tak0294.cashbook.MainActivity;
+import fam.tak0294.cashbook.R;
+import fam.tak0294.cashbook.R.id;
+import fam.tak0294.cashbook.R.layout;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.app.Fragment;

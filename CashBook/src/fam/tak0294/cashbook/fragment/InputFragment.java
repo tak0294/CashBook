@@ -1,5 +1,11 @@
-package fam.tak0294.cashbook;
+package fam.tak0294.cashbook.fragment;
 
+import fam.tak0294.cashbook.R;
+import fam.tak0294.cashbook.R.drawable;
+import fam.tak0294.cashbook.R.id;
+import fam.tak0294.cashbook.R.layout;
+import fam.tak0294.cashbook.cache.Cache;
+import fam.tak0294.cashbook.cache.CacheTray;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;

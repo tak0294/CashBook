@@ -1,4 +1,4 @@
-package fam.tak0294.cashbook;
+package fam.tak0294.cashbook.cache;
 
 
 public class Cache {
